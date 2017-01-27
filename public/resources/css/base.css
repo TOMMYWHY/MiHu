@@ -1,0 +1,103 @@
+/*header*/
+.top_line{
+    height:2px;
+    background: #b92b27;
+}
+.navbar-default {
+    background-color: white;
+    border-color: #e7e7e7;
+    box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
+}
+.navbar-default .navbar-brand{
+    color: #b92b27;
+    font-size: 20px;
+}
+
+/*signup*/
+.input_error_set{
+    color: #b92b27;
+}
+
+/*home timeline*/
+.item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.portrait{
+    width: 50px;
+    margin-right: 10px;
+}
+.portrait img{width: 50px;}
+
+.vote .btn{
+    padding:0 0;
+    margin: 5px 0;
+}
+.vote button{
+    display: block;
+    color: #698ebf;
+    height: 24px;
+    line-height: 24px;
+    width: 38px;
+    border-radius: 3px;
+    border: 0;
+    cursor: pointer;
+    background: #eff6fa;
+    /*font-weight: 700;*/
+    /*font-weight: 500;*/
+    /*text-align: center;*/
+    /*text-decoration: none;*/
+    overflow: hidden;
+}
+
+.vote .btn-default:hover {
+    color: #FFFFFF;
+    background-color: #698ebf;
+    border-color: #698ebf;
+}
+.content .content_main{
+    display: flex;
+}
+.content .content_main img{
+    height: 112px;
+    width: 200px;
+    border-radius: 4px;
+    margin: 1px 10px 5px 0;
+}
+.content .event_header,.author, .bottom_common{
+    color: #999;
+    font-size: 1.3rem;
+}
+.content .item_title{
+    color: #333;
+    font-size: 1.9rem;
+    padding: 5px 0;
+}
+.item_each_line{
+    color: #999;
+    margin: 5px 0 25px 0;
+}
+
+.common_box{
+    display: none;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    padding:10px;
+    margin-bottom: 40px;
+}
+.common_each{
+    display: flex;
+}
+.common_each img{
+    width: 25px;
+    margin-right: 10px;
+}
+.common_each .common_username{
+    color: #259;
+}
+.common_each .common_end{
+    margin: 0 0  10px 0;
+}

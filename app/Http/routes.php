@@ -83,6 +83,9 @@ Route::any('api/answer/change',function (){
 Route::any('api/answer/read',function (){
     return answer_instance()->read();
 });
+Route::any('api/answer/remove',function (){
+    return answer_instance()->remove();
+});
 Route::any('api/answer/vote',function (){
     return answer_instance()->vote();
 });
@@ -110,4 +113,10 @@ Route::get('tpl/page/signup',function (){
 });
 Route::get('tpl/page/question_add',function (){
     return view('page/question_add');
+});
+Route::get('tpl/page/user',function (){
+    return view('page/user');
+});
+Route::get('tpl/page/question_detail',function (){
+    return view('page/question_detail');
 });

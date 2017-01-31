@@ -220,17 +220,31 @@ class User extends Model
             return err('id is required!');
         }
 
+//        if(rq('id')==='self'){
+//            $id=session('user_id');
+//        }
+        if(rq('id')==='self'){
+            if(!$this->is_logged_in())
+                return err('login required');
+            $id=session('user_id');
+        }else{
+            $id=rq('id');
+        }
+
+//        $id=rq('id')==='self'?
+//            session('user_id'):rq('id');
+
         $get_info=['id','username','avatar_url','intro'];
-        $user_ins=$this->find(rq('id'),$get_info);
+        $user_ins=$this->find($id,$get_info);
 
 //        dd($user_ins->toArray());
         $data=$user_ins->toArray();
 
         $answer_count=answer_instance()
-                ->where('user_id',rq('id'))
+                ->where('user_id',$id)
                 ->count();
         $question_count=question_instance()
-            ->where('user_id',rq('id'))
+            ->where('user_id',$id)
             ->count();
 
         $data['answer_count']=$answer_count;

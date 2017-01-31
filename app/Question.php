@@ -12,7 +12,7 @@ class Question extends Model
 //        dd(rq());
         /*验证是否登录*/
 //        dd(user_instance()->is_logoed_in());
-        if (!user_instance()->is_logoed_in()){
+        if (!user_instance()->is_logged_in()){
             return['status'=>0,'msg'=>'login is required!'];
         }
 
@@ -33,7 +33,7 @@ class Question extends Model
     }
 
     public function change(){
-        if(!user_instance()->is_logoed_in()){
+        if(!user_instance()->is_logged_in()){
             return['status'=>0,'msg'=>'login is required!'];
         }
 
@@ -62,7 +62,7 @@ class Question extends Model
     }
 
     public function remove(){
-        if(!user_instance()->is_logoed_in()){
+        if(!user_instance()->is_logged_in()){
             return['status'=>0,'msg'=>'login is required!'];
         }
         if (!rq('id')){
@@ -87,9 +87,19 @@ class Question extends Model
 
     public function read(){
         if (rq('id')){
-            $question_ins=$this->find(rq('id'));
-            return['status'=>1,'data_question'=>$question_ins];
+
+            $r=$this
+                ->with('answers_with_user_info')
+                ->find(rq('id'));
+            return['status'=>1,'data'=>$r];
         }
+
+        if(rq('user_id')) {
+            $user_id=rq('user_id')==='self'?
+                session('user_id'):
+                rq('user_id');
+            return $this->read_by_user_id($user_id);
+                }
 
 //        $limit=rq('limit')?:15;
 //        $skip=(rq('page')?rq('page')-1:0)*$limit;
@@ -103,10 +113,30 @@ class Question extends Model
             ->get(['id','title','desc','user_id','created_at','updated_at'])
             ->keyBy('id');
 
-        return ['status'=>1,'data_question'=>$result];
+        return ['status'=>1,'data'=>$result];
+    }
+
+    public function read_by_user_id($user_id){
+        $user=user_instance()->find($user_id);
+        if(!$user)
+            return err('user not exists');
+        $r= $this->where('user_id','=',$user_id)
+            ->get()->keyBy('id');
+        return suc($r->toArray());
     }
 
     public function user(){
         return $this->belongsTo('App\User');
+    }
+
+    public function answers(){
+        return $this->hasMany('App\Answer');
+    }
+
+    public function answers_with_user_info(){
+        return $this
+            ->answers()
+            ->with('users')
+            ->with('user');
     }
 }

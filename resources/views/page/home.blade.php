@@ -7,39 +7,47 @@
                     <hr>
                     <div class="item_box">
                         {{--each--}}
-                        <div ng-repeat="item in Timeline.data" class="item">
+                        <div ng-repeat="item in Timeline.data track by $index" class="item">
                             <div class="vote_portrait">
                                 <div class="portrait"><img src="/resources/img/touxiang.jpg" alt=""></div>
-                                <div class="vote">
-                                    <button class="btn btn-default">ding</button>
-                                    <button class="btn btn-default">cai</button>
+                                <div class="vote" ng-if="item.question_id">
+                                    <button ng-click="Timeline.vote({id:item.id,vote:1})" class="btn btn-default">赞[:item.upvote_count:]</button>
+                                    <button ng-click="Timeline.vote({id:item.id,vote:2})" class="btn btn-default">踩[:item.downvote_count:]</button>
                                 </div>
+                                {{--<div class="vote"  >--}}
+                                    {{--<button  ng-click="Timeline.vote({id:item.id,vote:1})" class="btn btn-default">赞[:item.upvote_count:]</button>--}}
+                                    {{--<button  ng-click="Timeline.vote({id:item.id,vote:2})" class="btn btn-default">踩[:item.downvote_count:]</button>--}}
+                                {{--</div>--}}
+
+
                             </div>
-                            <div class="content ">
-                                <div class="event_header" ng-if="item.question_id"> [:item.user.username:] add Answer</div>
-                                <div class="event_header" ng-if="!item.question_id"> [:item.user.username:] add Qusetion</div>
-                                <div class="item_title">[:item.title:]</div>
+                            <div class="content " style="width: 100%">
+                                <div class="event_header" ng-if="item.question_id"><a ui-sref="user({id:item.user.id})">[:item.user.username:]</a> add Answer</div>
+                                <div class="event_header" ng-if="!item.question_id"><a ui-sref="user({id:item.user.id})"> [:item.user.username:]</a> add Question</div>
+                                <div class="item_title" g-if="item.question_id" ui-sref="question.detail({id:item.question.id})">[:item.question.title:]</div>
+                                <div class="item_title" ui-sref="question.detail({id:item.id})" >[:item.title:]</div>
                                 <div class="author">Username: [:item.user.username:]</div>
                                 <div class="content_main mt5">
-                                    <div><img src="/resources/img/demo.jpg" alt=""></div>
-                                    <div><p>[:item.desc:]</p></div>
-                                </div>
-                                <div class="bottom_common p5">关注问题 收起评论 感谢 分享 收藏 • 没有帮助 • 举报 • 禁止转载
-                                </div>
-                                <div class="common_box">
-                                    {{--each--}}
-                                    <div class="common_each">
-                                        <div><img src="/resources/img/touxiang.jpg" alt=""></div>
-                                        <div>
-                                            <div class="common_username">铁齿铜牙汉尼拔</div>
-                                            <div><p>从不买华为，将来也不会买华为。好不容易由小米魅族开创的国产机新局面，绝不能让华为跟ov 开了倒车</p></div>
-                                            <hr class="common_end ">
-                                        </div>
+                                    {{--<div><img src="/resources/img/demo.jpg" alt=""></div>--}}
+                                    {{--<div ng-if="!item.question_id"><p>[:item.desc:]</p></div>--}}
+                                    <div ng-if="item.question_id" ui-sref="question.detail({id:item.question_id,answer_id:item.id})"><a>[:item.content:]</a>
+                                        <div class="author">[:item.updated_at:]</div>
                                     </div>
-                                    {{--end--}}
-
-
                                 </div>
+                                <div class="bottom_common p5" ng-if="item.question_id">
+                                    <span ng-click="item.show_comment=!item.show_comment">
+                                        <span ng-if="item.show_comment">hidden</span>
+                                        comment
+                                    </span>
+                                </div>
+                                {{--comment--}}
+
+                                <div ng-if="item.show_comment" comment-block answer-id="item.id"></div>
+
+
+
+
+                                {{--</div>--}}
                                 <hr class="item_each_line">
 
 
@@ -57,7 +65,12 @@
                 </div>
 
                 {{--aside--}}
-                <div  class="col-md-4 h100 pink"></div>
+                <div  class="col-md-4 h100 ">
+                    <h3> Project:MiHu <br></h3>
+                    <h3> Author:Tommy <br></h3>
+                   <h4> <a target="_blank" href="http://tommy.cf/">http://tommy.cf</a>
+                   </h4>
+                </div>
             </div>
         </div>
     </section>

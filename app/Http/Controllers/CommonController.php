@@ -18,6 +18,7 @@ class CommonController extends Controller
                     ->get();
 
         $answers_list=answer_instance()
+            ->with('question')
             ->with('user')
             ->with('users')
             ->limit($limit)

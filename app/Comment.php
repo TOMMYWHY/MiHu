@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     public function add(){
-        if (!user_instance()->is_logoed_in()){
+        if (!user_instance()->is_logged_in()){
             return['status'=>0,'msg'=>'login is required!'];
         }
 
@@ -64,18 +64,18 @@ class Comment extends Model
         }
 
         if (rq('question_id')){
-            $question_ins=question_instance()->find(rq('question_id'));
+            $question_ins=question_instance()->with('user')->find(rq('question_id'));
             if (!$question_ins) {
                 return ['status' => 0, 'msg' => ' question_id is not exists!'];
                 }
-            $data=$this->where('question_id','=',rq('question_id'))->get();
+            $data=$this->with('user')->where('question_id','=',rq('question_id'))->get();
             }
         if (rq('answer_id')){
-            $answer_ins=answer_instance()->find(rq('answer_id'));
+            $answer_ins=answer_instance()->with('user')->find(rq('answer_id'));
             if (!$answer_ins) {
                 return ['status' => 0, 'msg' => ' answer_id is not exists!'];
             }
-            $data=$this->where('answer_id','=',rq('answer_id'))->get();
+            $data=$this->with('user')->where('answer_id','=',rq('answer_id'))->get();
         }
         $data=$data->keyBy('id');
         return['status'=>1,'data'=>$data];
@@ -83,7 +83,7 @@ class Comment extends Model
     }
 
     public function remove(){
-        if (!user_instance()->is_logoed_in()){
+        if (!user_instance()->is_logged_in()){
             return['status'=>0,'msg'=>'login is required!'];
         }
 
@@ -104,5 +104,9 @@ class Comment extends Model
         return $comment_ins->delete()?
             ['status'=>1]:
             ['status'=>0,'msg'=>'db delete failed!'];
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }

@@ -17,11 +17,13 @@ class CreateTableAnswers extends Migration
             $table->text('content');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('question_id');
+//            $table->unsignedInteger('common_id');
 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('question_id')->references('id')->on('questions');
+//            $table->foreign('reply_to')->references('id')->on('comments');
         });
     }
 

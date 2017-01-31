@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <title>米乎</title>
     {{--<link rel="stylesheet" href ="/node_modules/normalize-css/normalize.css">--}}
-    <link rel="stylesheet" href ="{{asset('/node_modules/normalize-css/normalize.css')}}">
-    <link rel="stylesheet" href="{{asset('/resources/css/commons.css')}}">
-    <link rel="stylesheet" href="{{asset('/node_modules/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('/resources/css/base.css')}}">
+    {{--<link rel="stylesheet" href ="{{asset('public/node_modules/normalize-css/normalize.css')}}">--}}
+    <link rel="stylesheet" href ='../../node_modules/normalize-css/normalize.css'>
+    <link rel="stylesheet" href="../../resources/css/commons.css">
+    <link rel="stylesheet" href='../../node_modules/bootstrap/bootstrap.css'>
+    <link rel="stylesheet" href="../../resources/css/base.css">
 
-    <script src="{{asset('/node_modules/jquery/dist/jquery.js')}}"></script>
-    <script src="{{asset('/node_modules/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{asset('/node_modules/angular/angular.js')}}"></script>
-    <script src="{{asset('/node_modules/angular-ui-router/release/angular-ui-router.js')}}"></script>
-    <script src="{{asset('/resources/js/base.js')}}"></script>
-    <script src="{{asset('/resources/js/user.js')}}}"></script>
-    <script src="{{asset('/resources/js/common.js')}}"></script>
-    <script src="{{asset('/resources/js/question.js')}}"></script>
-    <script src="{{asset('/resources/js/answer.js')}}"></script>
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../../node_modules/bootstrap/bootstrap.min.js"></script>
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="../../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../../resources/js/base.js"></script>
+    <script src="../../resources/js/user.js"></script>
+    <script src="../../resources/js/common.js"></script>
+    <script src="../../resources/js/question.js"></script>
+    <script src="../../resources/js/answer.js"></script>
 
 </head>
 <body>

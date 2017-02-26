@@ -9,7 +9,7 @@
                         {{--each--}}
                         <div ng-repeat="item in Timeline.data track by $index" class="item">
                             <div class="vote_portrait">
-                                <div class="portrait"><img src="/resources/img/touxiang.jpg" alt=""></div>
+                                <div class="portrait"><img src="/resources/img/default.jpg" alt=""></div>
                                 <div class="vote" ng-if="item.question_id">
                                     <button ng-click="Timeline.vote({id:item.id,vote:1})" class="btn btn-default">赞[:item.upvote_count:]</button>
                                     <button ng-click="Timeline.vote({id:item.id,vote:2})" class="btn btn-default">踩[:item.downvote_count:]</button>
@@ -28,7 +28,7 @@
                                 <div class="item_title" ui-sref="question.detail({id:item.id})" >[:item.title:]</div>
                                 <div class="author">Username: [:item.user.username:]</div>
                                 <div class="content_main mt5">
-                                    {{--<div><img src="/resources/img/demo.jpg" alt=""></div>--}}
+                                    <div><img src="/resources/img/demo.jpg" alt=""></div>
                                     {{--<div ng-if="!item.question_id"><p>[:item.desc:]</p></div>--}}
                                     <div ng-if="item.question_id" ui-sref="question.detail({id:item.question_id,answer_id:item.id})"><a>[:item.content:]</a>
                                         <div class="author">[:item.updated_at:]</div>
@@ -68,7 +68,8 @@
                 <div  class="col-md-4 h100 ">
                     <h3> Project:MiHu <br></h3>
                     <h3> Author:Tommy <br></h3>
-                   <h4> <a target="_blank" href="http://tommy.cf/">http://tommy.cf</a>
+                    <h4>CV:&nbsp;&nbsp;	&nbsp;		&nbsp;	&nbsp;	&nbsp;	 <a target="_blank" href="http://tommycv.cf/">http://tommycv.cf</a>
+                    <h4>Portfolio: <a target="_blank" href="http://www.tommywhy.ml.s3-website-ap-southeast-2.amazonaws.com/">http://tommy.cf</a>
                    </h4>
                 </div>
             </div>
